@@ -281,7 +281,7 @@ Teste diferentes tamanhos editando manualmente o arquivo:
 
 | Buffer Size | Syscalls read() | Tempo (s) | Chars/seg |
 |-------------|-----------------|-----------|-----------|
-| 16          | ?               | ?         | ?         |
+| 16          | 130             | 0.002654  | ?         |
 | 64          | ?               | ?         | ?         |
 | 256         | ?               | ?         | ?         |
 | 1024        | ?               | ?         | ?         |

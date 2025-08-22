@@ -68,19 +68,19 @@ strace -e openat,read,close ./ex2_leitura
 ## 3️⃣ Exercício 3 - Contador com Loop
 
 ### 📋 Resultados (BUFFER_SIZE = 64):
-- Linhas: _____ (esperado: 25)
-- Caracteres: _____
-- Chamadas read(): _____
-- Tempo: _____ segundos
+- Linhas: 25 (esperado: 25)
+- Caracteres: 1300
+- Chamadas read(): 130
+- Tempo: 0.002654 segundos
 
 ### 🧪 Experimentos com buffer:
 
 | Buffer Size | Chamadas read() | Tempo (s) |
 |-------------|-----------------|-----------|
-| 16          |                 |           |
-| 64          |                 |           |
-| 256         |                 |           |
-| 1024        |                 |           |
+| 16          | 130             | 0.002355  |
+| 64          | 130             |  0.002654 |
+| 256         |   130           |0.002664   |
+| 1024        |  130            | 0.002640  |
 
 ### 🔍 Análise
 
