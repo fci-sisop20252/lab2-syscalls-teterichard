@@ -13,19 +13,19 @@ strace -e write ./ex1b_write
 ### 🔍 Análise
 
 **1. Quantas syscalls write() cada programa gerou?**
-- ex1a_printf: _____ syscalls
-- ex1b_write: _____ syscalls
+- ex1a_printf: 9 syscalls
+- ex1b_write: 7 syscalls
 
 **2. Por que há diferença entre os dois métodos? Consulte o docs/printf_vs_write.md**
 
 ```
-[Sua análise aqui]
+[O printf() é uma função realiza bufferização da saída antes mesmo de chamar write(), podendo haver mais ou menos chamadas para o write() dependendo do tamanho da mensagem e do momento em que o buffer é descarregado. Ao mesmo tempo, o write() é uma chamada de função no kernel direta, na qual cada invocação no código gera exatamente uma syscall correspondente.]
 ```
 
 **3. Qual método é mais previsível? Por quê você acha isso?**
 
 ```
-[Sua análise aqui]
+O write() é mais previsível, pois sua uma correspondência é direta com cada chamada na aplicação e a syscall executada, enquanto o printf(), ao usar buffer interno, pode gerar resultados diferentes em dependendo das situações distintas.]
 ```
 
 ---
@@ -33,8 +33,8 @@ strace -e write ./ex1b_write
 ## 2️⃣ Exercício 2 - Leitura de Arquivo
 
 ### 📊 Resultados da execução:
-- File descriptor: _____
-- Bytes lidos: _____
+- File descriptor: 3
+- Bytes lidos: 127
 
 ### 🔧 Comando strace:
 ```bash
@@ -46,19 +46,21 @@ strace -e openat,read,close ./ex2_leitura
 **1. Qual file descriptor foi usado? Por que não começou em 0, 1 ou 2?**
 
 ```
-[Sua análise aqui]
+[O file descriptor usado foi o 3, pois os descritores 0, 1 e 2 já estavam reservados pelo sistema para a entrada padrão, sendo stdin = 0, saída padrão, sendo stdout = 1, e saída de erro padrão com stderr = 2.]
 ```
 
 **2. Como você sabe que o arquivo foi lido completamente?**
 
 ```
-[Sua análise aqui]
+[No strace, a chamada read() retornou 127, que foi o número de bytes passado no BUFFER_SIZE - 1..
+]
 ```
 
 **3. Por que verificar retorno de cada syscall?**
 
 ```
-[Sua análise aqui]
+[Verifica-se o retorno pois cada syscall pode falhar, e ao fazer isso, o programa pode detectar e tratar esses erros em vez de só continuar executando. Além disso, elas são muito importantes na programação de baixo nível, já que as syscalls não lançam exceções e apenas retornam valores que indicam sucesso ou falha.
+]
 ```
 
 ---

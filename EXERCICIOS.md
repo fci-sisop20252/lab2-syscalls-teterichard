@@ -262,7 +262,7 @@ strace -e read ./ex3_contador
 # Salvar estatísticas
 strace -c -o traces/ex3_stats.txt ./ex3_contador
 ```
-
+parei aquiiiii
 ### Passo 5: Experimentos com Buffer
 
 Teste diferentes tamanhos editando manualmente o arquivo:
